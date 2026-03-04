@@ -31,7 +31,7 @@ jobs:
         if: ${{ env.FRONTEND_NAME != '' }}
         run: |
           cd frontend/
-          echo "${{ secrets.FRONTEND_ENV }}" > .env.prod
+          # 移除创建 .env.prod 的步骤，完全依赖 Cloudflare Pages 环境变量
           pnpm install --no-frozen-lockfile
           export frontend_branch="${{ secrets.FRONTEND_BRANCH }}"
           if [ -n "$frontend_branch" ]; then
@@ -68,7 +68,7 @@ jobs:
         if: ${{ env.TG_FRONTEND_NAME != '' }}
         run: |
           cd frontend/
-          echo "${{ secrets.FRONTEND_ENV }}" > .env.prod
+          # 同样移除创建 .env.prod 的步骤
           pnpm install --no-frozen-lockfile
           export frontend_branch="${{ secrets.FRONTEND_BRANCH }}"
           if [ -n "$frontend_branch" ]; then
